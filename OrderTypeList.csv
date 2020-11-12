@@ -1,0 +1,33 @@
+Order code,Order description,Specimen
+100116,Basic Metabolic Panel,Blood
+100120,Comprehensive Metabolic,Blood
+100121,Electrolyte Panel,Blood
+100124,General Chemistry 13,Blood
+100125,General Chemistry 6,Blood
+100129,Hematology,Blood
+100130,Kidney Check,Blood
+100131,Lipid Panel,Blood
+100132-IH,Lipid Panel Plus,Blood
+100133,Liver Panel Plus,Blood
+100134,MetLyte 8 Panel,Blood
+100135,Renal Function Panel,Blood
+100137,Vitamin D,Blood
+100138,Total PSA,Blood
+-100139,TSH,Blood
+100140,Urinalysis,Urine
+100141,Microalbumin,Urine
+100152,Testosterone,Blood
+100153,Basic Metabolic Panel Plus,Blood
+100154,Albumin Creatinine Ratio,Urine
+100155,Hemoglobin A1c,Blood
+100156,"hCG, Urine",Urine
+100157,"hCG, Serum",Serum
+100158,Hemoglobin,Blood
+100159,Influenza A + B,Swab
+100160,Strep A+,Swab
+100161,Respiratory Syncytial Virus (RSV),Swab
+100162,HSV 1 + 2 and VZV ,Blood
+100165,RSV + hMPV,Swab
+100166,C. difficile,Stool
+1002-9,Cardiac Panel,Blood
+100210B,D-Dimer,Blood
