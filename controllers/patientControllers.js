@@ -93,3 +93,4 @@ exports.getallPatients = getallPatients;
 exports.getPatientById = getPatientById;
 exports.createPatient = createPatient;
 exports.updatePatient = updatePatient;
+exports.Patients = Patients;
