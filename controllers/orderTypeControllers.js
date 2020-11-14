@@ -1,4 +1,4 @@
-orderTypes = [
+let orderTypes = [
 
 {orderCode: '100116', orderName: 'Basic Metabolic Panel', specimenType: 'blood'},
 {orderCode: '100120', orderName: 'Comprehensive Metabolic', specimenType: 'blood'},

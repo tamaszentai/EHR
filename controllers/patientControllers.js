@@ -1,4 +1,4 @@
-const Patients = [
+let Patients = [
   {
     MRN: "789456",
     firstName: "Tamas",

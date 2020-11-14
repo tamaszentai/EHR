@@ -1,7 +1,7 @@
 const patientControllers = require("./patientControllers");
 const Patients = patientControllers.Patients;
 
-const patientOrders = [];
+let patientOrders = [];
 
 const getAllPatientOrder = (req, res, next) => {
   res.status(200).json(patientOrders)
@@ -75,7 +75,7 @@ const updatePatientOrder = (req, res, next) => {
 const deletePatientOrder = (req, res, next) => {
   const patientOrderId = req.params.id;
   const order = patientOrders.find((po) => {
-    po.patientOrderId === patientOrderId
+    return po.patientOrderId === patientOrderId
   });
   if(!order){
     return res.status(404).json({message: 'Patient Order not found!'})

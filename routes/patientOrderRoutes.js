@@ -4,6 +4,8 @@ const patientOrderControllers = require('../controllers/patientOrderControllers'
 
 const router = express.Router();
 
+router.get('/', patientOrderControllers.getAllPatientOrder);
+
 router.get('/:id', patientOrderControllers.getPatientOrderById);
 
 router.post('/', patientOrderControllers.createPatientOrder);
