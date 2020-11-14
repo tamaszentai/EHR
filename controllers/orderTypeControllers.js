@@ -1,5 +1,5 @@
 orderTypes = [
-  
+
 {orderCode: '100116', orderName: 'Basic Metabolic Panel', specimenType: 'Blood'},
 {orderCode: '100120', orderName: 'Comprehensive Metabolic', specimenType: 'Blood'},
 {orderCode: '100121', orderName: 'Electrolyte Panel', specimenType: 'Blood'},
@@ -33,3 +33,9 @@ orderTypes = [
 {orderCode: '100209', orderName: 'Cardiac Panel', specimenType: 'Blood'},
 {orderCode: '100210', orderName: 'B,D-Dimer', specimenType: 'Blood'}
 ]
+
+const getAllOrderTypes = (req, res, next) => {
+  res.status(200).json(orderTypes);
+}
+
+exports.getAllOrderTypes = getAllOrderTypes;
