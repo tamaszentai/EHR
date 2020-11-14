@@ -15,13 +15,13 @@ orderTypes = [
 {orderCode: '100137', orderName: 'Vitamin D', specimenType: 'blood'},
 {orderCode: '100138', orderName: 'Total PSA', specimenType: 'blood'},
 {orderCode: '100139', orderName: 'TSH', specimenType: 'blood'},
-{orderCode: '100140', orderName: 'Urinalysis', specimenType: 'brine'},
-{orderCode: '100141', orderName: 'Microalbumin', specimenType: 'brine'},
+{orderCode: '100140', orderName: 'Urinalysis', specimenType: 'urine'},
+{orderCode: '100141', orderName: 'Microalbumin', specimenType: 'urine'},
 {orderCode: '100152', orderName: 'Testosterone', specimenType: 'blood'},
 {orderCode: '100153', orderName: 'Basic Metabolic Panel Plus', specimenType: 'blood'},
-{orderCode: '100154', orderName: 'Albumin Creatinine Ratio', specimenType: 'brine'},
+{orderCode: '100154', orderName: 'Albumin Creatinine Ratio', specimenType: 'urine'},
 {orderCode: '100155', orderName: 'Hemoglobin A1c', specimenType: 'blood'},
-{orderCode: '100156', orderName: 'hCG, Urine', specimenType: 'brine'},
+{orderCode: '100156', orderName: 'hCG, Urine', specimenType: 'urine'},
 {orderCode: '100157', orderName: 'hCG, Serum', specimenType: 'berum'},
 {orderCode: '100158', orderName: 'Hemoglobin', specimenType: 'blood'},
 {orderCode: '100159', orderName: 'Influenza A + B', specimenType: 'swab'},
@@ -38,4 +38,23 @@ const getAllOrderTypes = (req, res, next) => {
   res.status(200).json(orderTypes);
 }
 
+const searchByInformation = (req, res, next) => {
+  const {information} = req.body;
+  let order;
+  let orderArray = [];
+  for(let i = 0; i < orderTypes.length; i++){
+    if(orderTypes[i].orderCode === information || orderTypes[i].orderName === information || orderTypes[i].specimenType === information){
+      order = orderTypes[i];
+      orderArray.push(order);
+    }
+  }
+  if (!order) {
+    return res.status(404).json({
+      message: "Could not find OrderType with the provided information.",
+    });
+  }
+  res.json(orderArray);
+}
+
 exports.getAllOrderTypes = getAllOrderTypes;
+exports.searchByInformation = searchByInformation;
