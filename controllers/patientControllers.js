@@ -1,4 +1,4 @@
-const patients = [
+const Patients = [
   {
     MRN: "789456",
     firstName: "Tamas",
@@ -18,7 +18,21 @@ const patients = [
 ];
 
 const getallPatients = (req, res, next) => {
-  res.status(200).json(patients);
+  res.status(200).json(Patients);
+};
+
+const getPatientById = (req, res, next) => {
+  const patientId = req.params.id;
+  const patient = Patients.find((pat) => {
+    return pat.MRN === patientId;
+  });
+  if (!patient) {
+    return res.status(404).json({
+      message: "Could not find a patient for the provided id.",
+    });
+  }
+  res.json({ patient });
 };
 
 exports.getallPatients = getallPatients;
+exports.getPatientById = getPatientById;
