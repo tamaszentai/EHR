@@ -6,9 +6,10 @@ const orderTypeRoutes = require('./routes/orderTypeRoutes');
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.use('/api/patients', patientRoutes)
 app.use('/api/ordertypes', orderTypeRoutes);
 
-app.use(bodyParser.json());
 
 app.listen(5000);

@@ -12,9 +12,9 @@ const Patients = [
     firstName: "Joe",
     lastName: "Smith",
     DOB: "28/02/1991",
-    Address: "9 Cucumber street, Faketown",
+    address: "9 Cucumber street, Faketown",
     patientOrders: [],
-  }
+  },
 ];
 
 const getallPatients = (req, res, next) => {
@@ -34,5 +34,21 @@ const getPatientById = (req, res, next) => {
   res.json({ patient });
 };
 
+const createPatient = (req, res, next) => {
+  console.log(req.body);
+  const { MRN, firstName, lastName, DOB, address, patientOrders } = req.body;
+  const createdPatient = {
+    MRN,
+    firstName,
+    lastName,
+    DOB,
+    address,
+    patientOrders
+  };
+  Patients.push(createdPatient);
+  res.status(201).json({ patient: createdPatient });
+};
+
 exports.getallPatients = getallPatients;
 exports.getPatientById = getPatientById;
+exports.createPatient = createPatient;
