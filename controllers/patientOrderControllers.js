@@ -1,6 +1,10 @@
 const patientControllers = require("./patientControllers");
 const Patients = patientControllers.Patients;
 
+const patientOrders = [];
+
+
+
 const createPatientOrder = (req, res, next) => {
   const {
     patientOrderId,
@@ -27,10 +31,17 @@ const createPatientOrder = (req, res, next) => {
           "Couldn't find patient with the provided ID, Patient Order Cancelled",
       });
   }
-  patient.patientOrders.push(patientOrderId);
-  res.status(200).json({message: "Patient Order Added!"});
+  for(let i = 0; i < patientOrders.length; i++){
+    if(patientOrders[i].patientOrderId === patientOrderId){
+      return res.status(403).json({message: "Patient order already exists!"})
+    }
+  }
+      patientOrders.push(createdPatientOrder);
+      patient.patientOrders.push(patientOrderId);
+      res.status(200).json({message: "Patient Order Added!"});
+  console.log(patientOrders);
 };
 
-// console.log(Patients);
+
 
 exports.createPatientOrder = createPatientOrder;
