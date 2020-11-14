@@ -7,5 +7,4 @@ const router = express.Router();
 router.get('/', orderTypeControllers.getAllOrderTypes);
 
 
-
 module.exports = router;
