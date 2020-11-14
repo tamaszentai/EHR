@@ -41,7 +41,6 @@ const getPatientById = (req, res, next) => {
 //***** Create a Patient ****//
 
 const createPatient = (req, res, next) => {
-  console.log(req.body);
   const { MRN, firstName, lastName, DOB, address, patientOrders } = req.body;
   const createdPatient = {
     MRN,
