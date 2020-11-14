@@ -4,7 +4,9 @@
   "description": "Relaymed is SAAS middleware, we connect to Point Of Care Testing (POCT) devices from the customer’s In-house Labs and file the results into their Electronic Health Record (EHR). To ensure the patients receive accurate results, these results need to be matched to patients and orders stored in the EHR. There is a large selection of EHRs to choose from and for Relaymed to integrate, as well as a large selection of devices to integrate.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+
   },
   "repository": {
     "type": "git",
