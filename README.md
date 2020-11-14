@@ -1,3 +1,38 @@
+# Running Instructions
+In the root directory type 'npm install'
+In the root directory type 'npm start'
+
+The server is running on localhost:5000
+
+This API doesn't use database, everything is hardcoded and stored in memory. Data will lose after server restart.
+
+For testing post/patch/delete requests I recommend to use: Insomnia or Postman.
+
+# Used technologies
+Node.js
+Express
+
+# Routes
+/api/patients - all patients.
+/api/patients/id - gets specific patient by id  -- MRN is used for ID!
+/api/patients/id - with a POST request the user can create a new patient.
+{ MRN, firstName, lastName, DOB, address, patientOrders } in JSON format.
+
+/api/patients/id - with a PATCH request the user can edit an existing patient's data.
+{ firstName, lastName, DOB, address } in JSON format  --- MRN, DOB, patiendOrders are not editable!
+---------------------------------------------------------------------------------------------------------------------------------------
+/api/ordertypes - all ordertypes.
+/api/ordertypes - with a POST request the user can search in ordertypes.
+{ information } in JSON format. For example : { "information": "blood} this will give back to the user every matches with blood.
+/api/ordertypes/code - orderCode is used as id. With a DELETE request the user can delete an existing ordertype.
+---------------------------------------------------------------------------------------------------------------------------------------
+/api/patientorders = all patientorders -- this will be empty, the user has to add patientorders to populate.
+/api/patientorders/id = gets specific patientOrder by id.
+/api/patientorders - with a POST request the user can create a new patientorder.
+/api/patientorders/id - with a PATCH request the user can edit an existing patientorder.
+/api/patientorders/id - with a DELETE request the user can delete an existing patientorder. -- WARNING: Doesn't remove the patientorder from the patient's data!
+
+
 # Relaymed Coding Exercise
 ## Summary  
 Relaymed is SAAS middleware, we connect to Point Of Care Testing (POCT) devices from the customer’s In-house Labs and file the results into their Electronic Health Record (EHR). To ensure the patients receive accurate results, these results need to be matched to patients and orders stored in the EHR. There is a large selection of EHRs to choose from and for Relaymed to integrate, as well as a large selection of devices to integrate.  
