@@ -29,7 +29,9 @@ Express
 /api/patientorders = all patientorders -- this will be empty, the user has to add patientorders to populate.
 /api/patientorders/id = gets specific patientOrder by id.
 /api/patientorders - with a POST request the user can create a new patientorder.
+{ patientOrderId, creationDate, patientId, orderCode, status }
 /api/patientorders/id - with a PATCH request the user can edit an existing patientorder.
+{ status } - Status editable only!
 /api/patientorders/id - with a DELETE request the user can delete an existing patientorder. -- WARNING: Doesn't remove the patientorder from the patient's data!
 
 
