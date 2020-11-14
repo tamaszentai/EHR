@@ -3,7 +3,13 @@ const Patients = patientControllers.Patients;
 
 const patientOrders = [];
 
-
+const getPatientOrderById = (req, res, next) => {
+  const patientOrderId = req.params.id;
+  const patientOrder = patientOrders.find((po) => {
+    return po.patientOrderId === patientOrderId
+  });
+  res.status(200).json(patientOrder); 
+}
 
 const createPatientOrder = (req, res, next) => {
   const {
@@ -43,5 +49,26 @@ const createPatientOrder = (req, res, next) => {
 };
 
 
+const updatePatientOrder = (req, res, next) => {
+  const { status } = req.body;
+  const patientOrderId = req.params.id;
+  const order = patientOrders.find((po) => {
+    return po.patientOrderId === patientOrderId;
+  });
+  const updatedPatientOrder = {...patientOrders.find(po => po.patientOrderId === patientOrderId) };
+  const patientOrderIndex = patientOrders.findIndex(po => po.patientOrderId === patientOrderId);
+  updatedPatientOrder.status = status;
 
+  patientOrders[patientOrderIndex] = updatedPatientOrder;
+  if(!order){
+    return res.status(404).json({
+      message: "Could not find a Patient Order for the provided id.",
+    });
+  }
+    res.status(200).json(updatedPatientOrder);
+}
+
+
+exports.getPatientOrderById = getPatientOrderById;
 exports.createPatientOrder = createPatientOrder;
+exports.updatePatientOrder = updatePatientOrder;
