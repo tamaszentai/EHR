@@ -10,4 +10,6 @@ router.post('/', patientOrderControllers.createPatientOrder);
 
 router.patch('/:id', patientOrderControllers.updatePatientOrder);
 
+router.delete('/:id', patientOrderControllers.deletePatientOrder);
+
 module.exports = router;

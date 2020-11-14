@@ -3,6 +3,10 @@ const Patients = patientControllers.Patients;
 
 const patientOrders = [];
 
+const getAllPatientOrder = (req, res, next) => {
+  res.status(200).json(patientOrders)
+}
+
 const getPatientOrderById = (req, res, next) => {
   const patientOrderId = req.params.id;
   const patientOrder = patientOrders.find((po) => {
@@ -68,7 +72,20 @@ const updatePatientOrder = (req, res, next) => {
     res.status(200).json(updatedPatientOrder);
 }
 
+const deletePatientOrder = (req, res, next) => {
+  const patientOrderId = req.params.id;
+  const order = patientOrders.find((po) => {
+    po.patientOrderId === patientOrderId
+  });
+  if(!order){
+    return res.status(404).json({message: 'Patient Order not found!'})
+  }
+  patientOrders = patientOrders.filter((order) => order.patientOrderId !== patientOrderId);
+  res.status(200).json({message: 'Patient Order Deleted!'});
+}
 
+exports.getAllPatientOrder = getAllPatientOrder;
 exports.getPatientOrderById = getPatientOrderById;
 exports.createPatientOrder = createPatientOrder;
 exports.updatePatientOrder = updatePatientOrder;
+exports.deletePatientOrder = deletePatientOrder;
