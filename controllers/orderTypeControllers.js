@@ -56,5 +56,19 @@ const searchByInformation = (req, res, next) => {
   res.json(orderArray);
 }
 
+const deleteOrderTypeByOrderCode = (req, res, next) => {
+  const orderCode = req.params.code;
+  const orderType = orderTypes.find((ot) => {
+    return ot.orderCode === orderCode;
+  });
+  if(!orderType){
+    return res.status(404).json({message: 'Order Type not found!'})
+  }
+  orderTypes = orderTypes.filter((order) => order.orderCode !== orderCode);
+  res.status(200).json({message: 'Order Type Deleted!'});
+}
+
+
 exports.getAllOrderTypes = getAllOrderTypes;
 exports.searchByInformation = searchByInformation;
+exports.deleteOrderTypeByOrderCode = deleteOrderTypeByOrderCode;
