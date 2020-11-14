@@ -88,8 +88,17 @@ if(!patient){
   res.status(200).json({patient: updatedPatient});
 }
 
+//***** Deleting from patientOrder *****/
+
+const deletePatientOrder = (id) => {
+  for(let i = 0; Patients.length; i++){
+    patientOrders = Patients[i].patientOrders.filter((order) => order !== id);
+  }
+}
+
 exports.getallPatients = getallPatients;
 exports.getPatientById = getPatientById;
 exports.createPatient = createPatient;
 exports.updatePatient = updatePatient;
 exports.Patients = Patients;
+exports.deletePatientOrder = deletePatientOrder;

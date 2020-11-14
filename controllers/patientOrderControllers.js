@@ -1,5 +1,6 @@
 const patientControllers = require("./patientControllers");
 const Patients = patientControllers.Patients;
+const deletePatientOrderFunction = patientControllers.deletePatientOrder;
 
 let patientOrders = [];
 
@@ -81,8 +82,10 @@ const deletePatientOrder = (req, res, next) => {
     return res.status(404).json({message: 'Patient Order not found!'})
   }
   patientOrders = patientOrders.filter((order) => order.patientOrderId !== patientOrderId);
+  deletePatientOrderFunction(patientOrderId);
   res.status(200).json({message: 'Patient Order Deleted!'});
 }
+
 
 exports.getAllPatientOrder = getAllPatientOrder;
 exports.getPatientOrderById = getPatientOrderById;
