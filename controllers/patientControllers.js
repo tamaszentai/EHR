@@ -45,6 +45,13 @@ const createPatient = (req, res, next) => {
     address,
     patientOrders
   };
+
+  for (let i = 0; i < Patients.length; i++) {
+    if (Patients[i].MRN === MRN) {
+      return res.status(403).json({ message: "Given MRN is in use" });
+    }
+  }
+
   Patients.push(createdPatient);
   res.status(201).json({ patient: createdPatient });
 };
