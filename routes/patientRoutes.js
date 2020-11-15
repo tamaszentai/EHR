@@ -10,6 +10,6 @@ router.get("/:id", patientControllers.getPatientById);
 
 router.post("/", patientControllers.createPatient);
 
-router.patch("/:id", patientControllers.updatePatient);
+router.patch("/:mrn", patientControllers.updatePatient);
 
 module.exports = router;
