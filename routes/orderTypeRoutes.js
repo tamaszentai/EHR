@@ -6,8 +6,12 @@ const router = express.Router();
 
 router.get('/', orderTypeControllers.getAllOrderTypes);
 
-router.post('/', orderTypeControllers.searchByInformation);
+router.post('/ordercode', orderTypeControllers.searchByOrderCode);
 
-router.delete('/:code', orderTypeControllers.deleteOrderTypeByOrderCode);
+router.post('/ordername', orderTypeControllers.searchByOrderName);
+
+router.post('/specimentype', orderTypeControllers.searchBySpecimenType);
+
+// router.delete('/:code', orderTypeControllers.deleteOrderTypeByOrderCode);
 
 module.exports = router;
