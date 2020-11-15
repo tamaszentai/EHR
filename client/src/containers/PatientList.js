@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { CardDeck } from 'reactstrap';
 
+import AddPatientModal from './AddPatientModal';
 import Patient from "../components/Patient";
 
 import './Button.css';
@@ -18,6 +20,7 @@ const PatientList = () => {
   if (patients !== null) {
     patient = patients.map((data, index) => {
       return (
+        
         <Patient
           mrn={data.mrn}
           firstName={data.first_name}
@@ -26,14 +29,20 @@ const PatientList = () => {
           dob={data.dob}
           address={data.address}
         ></Patient>
+        
       );
     });
   }
 
   return(
   <div className="PatientList">
-    <button>Add new patient</button>
+    <AddPatientModal />
+    <CardDeck>
     {patient}
+    </CardDeck>
+    
+  
+    
     </div>)
 };
 
