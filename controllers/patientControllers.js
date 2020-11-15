@@ -33,6 +33,7 @@ const getPatientById = async (req, res, next) => {
 
 const createPatient = async (req, res, next) => {
   try {
+    console.log(req.body);
     const { MRN, firstName, lastName, DOB, address } = req.body;
     const newPatient = await pool.query(
       "INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES ($1, $2, $3, $4, $5)",

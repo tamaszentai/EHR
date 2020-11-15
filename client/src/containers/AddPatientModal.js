@@ -1,4 +1,4 @@
-import Axios from "axios";
+import axios from "axios";
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Form, Label, Input } from "reactstrap";
 
@@ -34,17 +34,22 @@ const AddPatientModal = (props) => {
     setAddress(e.target.value);
   }
 
-  const newPatient = {
-    mrn: mrn,
-    first_name: firstName,
-    last_name: lastName,
-    dob: dob,
-    address: address
-  }
 
   const submitFormHandler = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:5000/api/patients', JSON.stringify(newPatient))
+
+    const newPatient = {
+      MRN: mrn,
+      firstName: firstName,
+      lastName: lastName,
+      DOB: dob,
+      address: address
+    };
+
+    axios.post('http://localhost:5000/api/patients', newPatient)
+    .then(res => {
+      console.log(res.data)
+    })
   }
 
   return (
@@ -55,7 +60,7 @@ const AddPatientModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>New patient form</ModalHeader>
         <ModalBody>
-        <Form onSubmit={submitFormHandler}>
+        <Form>
       <FormGroup>
         <Label for="mrn">Medical Record Number</Label>
         <Input type="number" name="mrn" id="mrn" required onChange={mrnChangeHandler}/>
@@ -79,7 +84,7 @@ const AddPatientModal = (props) => {
       </Form>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="primary">
+          <Button type="submit" color="primary" onClick={submitFormHandler}>
             Add
           </Button>{" "}
           <Button color="secondary" onClick={toggle}>
