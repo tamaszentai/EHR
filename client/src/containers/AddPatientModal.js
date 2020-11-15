@@ -56,7 +56,7 @@ const AddPatientModal = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
+      <Button color="success" onClick={toggle}>
         Add new patient
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
@@ -89,7 +89,7 @@ const AddPatientModal = (props) => {
           <Button type="submit" color="primary" onClick={submitFormHandler}>
             Add
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
+          <Button color="danger" onClick={toggle}>
             Cancel
           </Button>
         </ModalFooter>

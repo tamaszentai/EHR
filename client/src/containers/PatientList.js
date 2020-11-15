@@ -40,7 +40,9 @@ const PatientList = () => {
 
   return(
   <div className="PatientList">
+    <br />
     <AddPatientModal addNewPatient={addNewPatient}/>
+    <br />
     <CardDeck>
     {patient}
     </CardDeck>
