@@ -1,3 +1,13 @@
+const {Client} = require('pg');
+const client = new Client({
+  user: "postgres",
+  password: "tamaszentai",
+  host: "localhost",
+  port: 5432,
+  database: "EHR"
+})
+
+
 let Patients = [
   {
     MRN: "789456",
@@ -19,8 +29,11 @@ let Patients = [
 
 //***** Get All Patients ****//
 
-const getallPatients = (req, res, next) => {
-  res.status(200).json(Patients);
+const getallPatients = async (req, res, next) => {
+  await client.connect()
+  const results = await client.query("select * from patients");
+  console.table(results.rows);
+  res.status(200).json(results.rows);
 };
 
 //***** Get Patient by Id(MRN) ****//

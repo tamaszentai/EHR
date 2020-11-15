@@ -1,5 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {Client} = require('pg');
+const client = new Client({
+  user: "postgres",
+  password: "tamaszentai",
+  host: "localhost",
+  port: 5432,
+  database: "EHR"
+})
+
 
 const patientRoutes = require('./routes/patientRoutes');
 const orderTypeRoutes = require('./routes/orderTypeRoutes');
@@ -13,5 +22,10 @@ app.use('/api/patients', patientRoutes)
 app.use('/api/ordertypes', orderTypeRoutes);
 app.use('/api/patientorders', patientOrderRoutes);
 
+client.connect()
+.then(() => console.log("Connected successfuly to the Database, server is started!"))
+.then(() => app.listen(5000))
+.catch((err) => console.log(err))
+.finally(() => client.end())
 
-app.listen(5000);
+// app.listen(5000);
