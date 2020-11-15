@@ -19,3 +19,4 @@ CREATE TABLE patients (
 );
 
 INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (123456, 'Tamas', 'Zentai', '1989-12-28', '1 Fake street Faketown');
+INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (789456, 'Tamas', 'Servanszki', '1988-04-88', '8 Cucumber street Faketown');
