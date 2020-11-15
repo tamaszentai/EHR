@@ -1,93 +1,50 @@
-const patientControllers = require("./patientControllers");
-const Patients = patientControllers.Patients;
+const { json } = require("body-parser");
+const pool = require("../db");
 
-let patientOrders = [];
-
-const getAllPatientOrder = (req, res, next) => {
-  res.status(200).json(patientOrders)
-}
-
-const getPatientOrderById = (req, res, next) => {
-  const patientOrderId = req.params.id;
-  const patientOrder = patientOrders.find((po) => {
-    return po.patientOrderId === patientOrderId
-  });
-  res.status(200).json(patientOrder); 
-}
-
-const createPatientOrder = (req, res, next) => {
-  const {
-    patientOrderId,
-    creationDate,
-    patientId,
-    orderCode,
-    status,
-  } = req.body;
-  const createdPatientOrder = {
-    patientOrderId,
-    creationDate,
-    patientId,
-    orderCode,
-    status,
-  };
-  const patient = Patients.find((pat) => {
-    return pat.MRN === patientId;
-  });
-  if (!patient) {
-    return res
-      .status(404)
-      .json({
-        message:
-          "Couldn't find patient with the provided ID, Patient Order Cancelled",
-      });
-  }
-  for(let i = 0; i < patientOrders.length; i++){
-    if(patientOrders[i].patientOrderId === patientOrderId){
-      return res.status(403).json({message: "Patient order already exists!"})
+const createPatientOrder = async (req, res, next) => {
+  try {
+    const {
+      patientOrderId,
+      creationDate,
+      patientId,
+      orderCode,
+      status,
+    } = req.body;
+    const newPatientOrder = await pool.query(
+      "INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES ($1, $2, $3, $4, $5)",
+      [patientOrderId, creationDate, patientId, orderCode, status]
+    );
+    res.status(200).json("New Patient order added!");
+  } catch (err) {
+    const duplicationError = "Patient order already exists! Use another ID!";
+    if (err.code === "23505") {
+      res.json(duplicationError);
     }
+    console.log(duplicationError);
   }
-      patientOrders.push(createdPatientOrder);
-      patient.patientOrders.push(patientOrderId);
-      res.status(200).json({message: "Patient Order Added!"});
-  console.log(patientOrders);
 };
 
-
-const updatePatientOrder = (req, res, next) => {
-  const { status } = req.body;
-  const patientOrderId = req.params.id;
-  const order = patientOrders.find((po) => {
-    return po.patientOrderId === patientOrderId;
-  });
-  const updatedPatientOrder = {...patientOrders.find(po => po.patientOrderId === patientOrderId) };
-  const patientOrderIndex = patientOrders.findIndex(po => po.patientOrderId === patientOrderId);
-  updatedPatientOrder.status = status;
-
-  patientOrders[patientOrderIndex] = updatedPatientOrder;
-  if(!order){
-    return res.status(404).json({
-      message: "Could not find a Patient Order for the provided id.",
-    });
+const updatePatientOrder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const updatePatientOrder = await pool.query(
+      "UPDATE patientorders SET status = $1 WHERE patient_order_id = $2",
+      [status, id]
+    );
+    res.status(200).json("Patient order was updated!");
+  } catch (err) {
+    console.log(err);
   }
-    res.status(200).json(updatedPatientOrder);
-}
+};
 
-const deletePatientOrder = (req, res, next) => {
-  const patientOrderId = req.params.id;
-  const order = patientOrders.find((po) => {
-    return po.patientOrderId === patientOrderId
-  });
-  if(!order){
-    return res.status(404).json({message: 'Patient Order not found!'})
+const deletePatientOrder = async (req, res, next) => {
+  try {
+  } catch (err) {
+    console.log(err);
   }
-  patientOrders = patientOrders.filter((order) => order.patientOrderId !== patientOrderId);
-  deletePatientOrderFunction(patientOrderId);
-  res.status(200).json({message: 'Patient Order Deleted!'});
-}
+};
 
-
-exports.getAllPatientOrder = getAllPatientOrder;
-exports.getPatientOrderById = getPatientOrderById;
 exports.createPatientOrder = createPatientOrder;
 exports.updatePatientOrder = updatePatientOrder;
 exports.deletePatientOrder = deletePatientOrder;

@@ -1,24 +1,5 @@
 const pool = require("../db");
 
-let Patients = [
-  {
-    MRN: "789456",
-    firstName: "Tamas",
-    lastName: "Zentai",
-    DOB: "28/12/1989",
-    address: "1 Fake street, Faketown",
-    patientOrders: [],
-  },
-  {
-    MRN: "123456",
-    firstName: "Joe",
-    lastName: "Smith",
-    DOB: "28/02/1991",
-    address: "9 Cucumber street, Faketown",
-    patientOrders: [],
-  },
-];
-
 //***** Get All Patients ****//
 
 const getallPatients = async (req, res, next) => {
@@ -39,7 +20,10 @@ const getPatientById = async (req, res, next) => {
     const results = await pool.query("SELECT * FROM patients WHERE mrn = $1", [
       patientId,
     ]);
-    res.status(200).json(results.rows);
+    if (results.length === 0){
+      res.status(200).json({message: "No patient found!"});
+    } else {
+    res.status(200).json(results.rows);}
   } catch (err) {
     console.log(err);
   }
@@ -82,4 +66,3 @@ exports.getallPatients = getallPatients;
 exports.getPatientById = getPatientById;
 exports.createPatient = createPatient;
 exports.updatePatient = updatePatient;
-exports.Patients = Patients;

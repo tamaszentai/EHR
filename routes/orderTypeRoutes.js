@@ -12,6 +12,6 @@ router.post('/ordername', orderTypeControllers.searchByOrderName);
 
 router.post('/specimentype', orderTypeControllers.searchBySpecimenType);
 
-// router.delete('/:code', orderTypeControllers.deleteOrderTypeByOrderCode);
+router.delete('/:code', orderTypeControllers.deleteOrderTypeByOrderCode);
 
 module.exports = router;

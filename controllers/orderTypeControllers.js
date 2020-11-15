@@ -43,20 +43,18 @@ const searchBySpecimenType = async (req, res, next) => {
   }
 };
 
-// const deleteOrderTypeByOrderCode = (req, res, next) => {
-//   const orderCode = req.params.code;
-//   const orderType = orderTypes.find((ot) => {
-//     return ot.orderCode === orderCode;
-//   });
-//   if(!orderType){
-//     return res.status(404).json({message: 'Order Type not found!'})
-//   }
-//   orderTypes = orderTypes.filter((order) => order.orderCode !== orderCode);
-//   res.status(200).json({message: 'Order Type Deleted!'});
-// }
+const deleteOrderTypeByOrderCode = async (req, res, next) => {
+  try {
+  const orderCode = req.params.code;
+  const results = await pool.query("DELETE FROM ordertypes WHERE order_code = $1", [orderCode])
+  res.status(200).json("Order Type deleted!")
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 exports.getAllOrderTypes = getAllOrderTypes;
 exports.searchByOrderCode = searchByOrderCode;
 exports.searchByOrderName = searchByOrderName;
 exports.searchBySpecimenType = searchBySpecimenType;
-// exports.deleteOrderTypeByOrderCode = deleteOrderTypeByOrderCode;
+exports.deleteOrderTypeByOrderCode = deleteOrderTypeByOrderCode;
