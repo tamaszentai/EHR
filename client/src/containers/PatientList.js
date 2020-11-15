@@ -8,7 +8,7 @@ import Patient from "../components/Patient";
 import './Button.css';
 
 const PatientList = () => {
-  const [patients, setPatients] = useState(null);
+  const [patients, setPatients] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/patients").then((res) => {
@@ -34,9 +34,13 @@ const PatientList = () => {
     });
   }
 
+  const addNewPatient = (newPatient) => {
+    setPatients([newPatient, ...patients])
+  };
+
   return(
   <div className="PatientList">
-    <AddPatientModal />
+    <AddPatientModal addNewPatient={addNewPatient}/>
     <CardDeck>
     {patient}
     </CardDeck>

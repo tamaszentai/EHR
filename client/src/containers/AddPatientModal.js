@@ -39,10 +39,10 @@ const AddPatientModal = (props) => {
     e.preventDefault();
 
     const newPatient = {
-      MRN: mrn,
-      firstName: firstName,
-      lastName: lastName,
-      DOB: dob,
+      mrn: mrn,
+      first_name: firstName,
+      last_name: lastName,
+      dob: dob,
       address: address
     };
 
@@ -50,6 +50,8 @@ const AddPatientModal = (props) => {
     .then(res => {
       console.log(res.data)
     })
+    props.addNewPatient(newPatient);
+    toggle();
   }
 
   return (
