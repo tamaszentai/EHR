@@ -40,6 +40,9 @@ const updatePatientOrder = async (req, res, next) => {
 
 const deletePatientOrder = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const deletePatientOrder = await pool.query("DELETE FROM patientorders WHERE patient_order_id = $1", [id]);
+    res.status(200).json("Patient Order deleted!");
   } catch (err) {
     console.log(err);
   }
