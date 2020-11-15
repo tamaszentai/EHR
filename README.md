@@ -15,6 +15,9 @@ The server is running on localhost:5000
 
 The database is running on port 5432
 
+# For the front-end
+Go to root directory client folder type 'npm install' then 'npm start'
+
 
 # Relaymed Coding Exercise
 ## Summary  
