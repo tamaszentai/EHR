@@ -5,11 +5,11 @@ https://www.postgresql.org/download/
 
 On Mac type createdb EHR.
 
-In the projects root directory type 'npm install'
+In the project's root directory type 'npm install'
 
-In the projects root directtory type psql -d EHR -f seeds.sql  - this command will populate the database
+In the project's root directtory type psql -d EHR -f seeds.sql  - this command will populate the database
 
-In the projects root directory type 'npm start'
+In the project's root directory type 'npm start'
 
 The server is running on localhost:5000
 
