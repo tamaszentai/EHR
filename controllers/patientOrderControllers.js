@@ -1,6 +1,5 @@
 const patientControllers = require("./patientControllers");
 const Patients = patientControllers.Patients;
-const deletePatientOrderFunction = patientControllers.deletePatientOrder;
 
 let patientOrders = [];
 

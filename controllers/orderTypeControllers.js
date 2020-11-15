@@ -1,3 +1,5 @@
+const pool = require("../db");
+
 let orderTypes = [
 
 {orderCode: '100116', orderName: 'Basic Metabolic Panel', specimenType: 'blood'},
