@@ -4,7 +4,7 @@ const pool = require("../db");
 
 const getallPatients = async (req, res, next) => {
   try {
-    const results = await pool.query("SELECT * FROM patients");
+    const results = await pool.query("SELECT * FROM patients ORDER BY last_name");
     console.table(results.rows);
     res.status(200).json(results.rows);
   } catch (err) {
@@ -51,10 +51,10 @@ const createPatient = async (req, res, next) => {
 const updatePatient = async (req, res, next) => {
   try {
     const { mrn } = req.params;
-    const { firstName, lastName, address } = req.body;
+    const { first_name, last_name, address } = req.body;
     const updatePatient = await pool.query(
       "UPDATE patients SET (first_name, last_name, address) = ($1, $2, $3) WHERE mrn = $4",
-      [firstName, lastName, address, mrn]
+      [first_name, last_name, address, mrn]
     );
     res.status(200).json("Patient was updated!")
   } catch (err) {

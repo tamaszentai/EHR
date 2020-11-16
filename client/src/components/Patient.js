@@ -39,6 +39,7 @@ const Patient = (props) => {
             lastName={props.lastName}
             dob={props.dob}
             address={props.address}
+            updatePatient={props.updatePatient}
           />
         </CardBody>
       </Card>

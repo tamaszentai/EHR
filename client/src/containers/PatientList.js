@@ -16,6 +16,12 @@ const PatientList = () => {
     });
   }, []);
 
+  const updatePatient = (updatedPatient) => {
+    let newState = [...patients]
+    newState = patients.map(data => data.mrn === updatedPatient.mrn ? {...data, ...updatedPatient} : data); 
+    setPatients(newState);
+   }
+
   let patient = null;
   if (patients !== null) {
     patient = patients.map((data, index) => {
@@ -28,6 +34,7 @@ const PatientList = () => {
           key={index}
           dob={data.dob}
           address={data.address}
+          updatePatient={updatePatient}
         ></Patient>
         
       );
@@ -35,8 +42,10 @@ const PatientList = () => {
   }
 
   const addNewPatient = (newPatient) => {
-    setPatients([newPatient, ...patients])
+    setPatients([...patients, newPatient])
   };
+
+
 
   return(
   <div className="PatientList">

@@ -27,8 +27,10 @@ CREATE TABLE patientorders (
 
 
 
-INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (123456, 'Tamas', 'Zentai', '1989-12-28', '1 Fake street Faketown');
-INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (789456, 'Tamas', 'Servanszki', '1988-04-08', '8 Cucumber street Faketown');
+INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (111222, 'Tamas', 'Zentai', '1989-12-28', '1 Fake street Faketown');
+INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (222333, 'Tamas', 'Servanszki', '1988-04-08', '8 Cucumber street Faketown');
+INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (333444, 'Balazs', 'Danyi', '1992-04-01', '33 Branches street Faketown');
+INSERT INTO patients (mrn, first_name, last_name, dob, address) VALUES (444555, 'Daniel', 'Pinter', '1990-05-19', '55 Stephen place Faketown');
 
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100116, 'Basic Metabolic Panel', 'blood');
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100120, 'Comprehensive Metabolic', 'blood');
@@ -63,8 +65,8 @@ INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100166, '
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100209, 'Cardiac Panel', 'blood');
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100210, 'B,D-Dimer', 'blood');
 
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000000, '15/11/2020', 123456, 100116, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000001, '15/11/2020', 123456, 100125, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000002, '15/11/2020', 123456, 100131, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000003, '15/11/2020', 789456, 100133, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000004, '15/11/2020', 789456, 100154, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000000, '15/11/2020', 111222, 100116, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000001, '15/11/2020', 222333, 100125, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000002, '15/11/2020', 222333, 100131, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000003, '15/11/2020', 333444, 100133, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000004, '15/11/2020', 444555, 100154, 'accepted');
