@@ -7,11 +7,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
 } from 'reactstrap';
 
 const Example = (props) => {
@@ -27,13 +22,13 @@ const Example = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Patients</NavLink>
+              <NavLink href="/patients">Patients</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/components/">Order Types</NavLink>
+              <NavLink href="/ordertypes">Order Types</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/components/">Patient Orders</NavLink>
+              <NavLink href="/patientorders">Patient Orders</NavLink>
             </NavItem>
           </Nav>
         </Collapse>

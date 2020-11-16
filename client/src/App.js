@@ -7,15 +7,22 @@ import {
 } from "react-router-dom";
 
 import Navigation from './components/Navigation';
-import PatientList from './containers/PatientList';
+import Patients from './containers/Patients';
+import OrderTypes from './containers/OrderTypes';
+import PatientOrder from './containers/PatientOrders';
+import PatientOrders from './containers/PatientOrders';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navigation />
-        <PatientList />
-
+        <Switch>
+          <Route path="/patients" component={Patients}/>
+          <Route path="/ordertypes" component={OrderTypes}/>
+          <Route path="/patientorders" component={PatientOrders}/>
+        <Patients />
+        </Switch>
       </Router>
     
     </div>

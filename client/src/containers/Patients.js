@@ -49,6 +49,7 @@ const PatientList = () => {
 
   return(
   <div className="PatientList">
+    <h1>Patients</h1>
     <br />
     <AddPatientModal addNewPatient={addNewPatient}/>
     <br />

@@ -124,7 +124,7 @@ const AddPatientModal = (props) => {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="primary" onClick={submitFormHandler}>
+          <Button type="submit" color="success" onClick={submitFormHandler}>
             Add
           </Button>{" "}
           <Button color="danger" onClick={toggle}>
