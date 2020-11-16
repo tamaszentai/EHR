@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -7,7 +8,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-} from 'reactstrap';
+} from "reactstrap";
 
 const Example = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,24 +18,31 @@ const Example = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Electronic Health Records</NavbarBrand>
+        <NavbarBrand>Electronic Health Records</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/patients">Patients</NavLink>
+              {/* <NavLink to="/patients">Patients</NavLink> */}
+              <NavLink>
+                <Link to="/patients">Patients</Link>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/ordertypes">Order Types</NavLink>
+            <NavLink>
+              <Link to="/ordertypes">Order Types</Link>
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/patientorders">Patient Orders</NavLink>
+            <NavLink>
+              <Link to="/patientorders">Patient Orders</Link>
+              </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
     </div>
   );
-}
+};
 
 export default Example;
