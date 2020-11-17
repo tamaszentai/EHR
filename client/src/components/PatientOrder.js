@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios';
 
 import SelectedPatientOrderModal from '../containers/SelectedPatientOrderModal';
 import SelectedOrderTypeModal from '../containers/SelectedOrderTypeModal';
 
 const PatientOrder = (props) => {
+  const [status, setStatus] = useState(props.status);
+
   const deletePatientOrderHandler = () => {
     props.deletePatientOrderHandler(props.patient_order_id);
   };
+
+  const statusChangeHandler = (e) => {
+    setStatus(e.target.value);
+  }
+
+const updatePatientOrderHandler = () => {
+  const newStatus = {
+    status: status
+  }
+
+  axios.patch(`http://localhost:5000/api/patientorders/${props.patient_order_id}`, newStatus);
+  // props.updatePatientOrder(updatedPatientOrder);
+
+}
 
   return (
     <div className="PatientOrder">
@@ -35,7 +52,7 @@ const PatientOrder = (props) => {
         {props.status}
       </td>
       <td style={{ width: "5%" }}>
-        <select placeholder={props.status}>
+        <select placeholder={props.status} onChange={statusChangeHandler}>
           <option value="" disabled selected hidden>
             Please Choose...
           </option>
@@ -46,7 +63,7 @@ const PatientOrder = (props) => {
           <option value="rejected">Rejected</option>
         </select>
         <br />
-        <button>Update Status</button>
+        <button onClick={updatePatientOrderHandler}>Update Status</button>
       </td>
       <td style={{ width: "1%" }}>
         <br />

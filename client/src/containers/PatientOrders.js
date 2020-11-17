@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Table } from "reactstrap";
 
+import AddPatientOrderModal from '../containers/AddPatientOrderModal';
 import PatientOrder from '../components/PatientOrder';
 
 const PatientOrders = () => {
@@ -21,6 +22,12 @@ const PatientOrders = () => {
     setPatientOrders(newState);
   };
 
+  const updatePatientOrder = (updatedPatientOrder) => {
+    let newState = [...patientOrders]
+    newState = patientOrder.map(data => data.mrn === updatedPatientOrder.patient_order_id ? {...data, ...updatedPatientOrder} : data); 
+    setPatientOrders(newState);
+   }
+
   let patientOrder = null;
   if (patientOrders !== null) {
     patientOrder = patientOrders.map((data, index) => {
@@ -33,6 +40,7 @@ const PatientOrders = () => {
           order_code={data.order_code}
           status={data.status}
           deletePatientOrderHandler={deletePatientOrderHandler}
+          updatePatientOrder={updatePatientOrder}
         ></PatientOrder>
       );
     });
@@ -41,6 +49,8 @@ const PatientOrders = () => {
   return(
     <div className="PatientOrders">
       <h1>Patient Orders</h1>
+      <br />
+      <AddPatientOrderModal />
       <br />
       <Table bordered>
       

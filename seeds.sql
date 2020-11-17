@@ -18,7 +18,7 @@ CREATE TABLE patients (
 );
 
 CREATE TABLE patientorders (
-  patient_order_id SERIAL PRIMARY KEY,
+  patient_order_id SERIAL8 PRIMARY KEY,
   creation_date VARCHAR(255),
   patient_id INT REFERENCES patients(mrn) ON DELETE CASCADE,
   order_code INT,
@@ -65,8 +65,8 @@ INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100166, '
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100209, 'Cardiac Panel', 'blood');
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100210, 'B,D-Dimer', 'blood');
 
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000000, '15/11/2020', 111222, 100116, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000001, '15/11/2020', 222333, 100125, 'rejected');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000002, '15/11/2020', 222333, 100131, 'reviewed');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000003, '15/11/2020', 333444, 100133, 'performed');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000004, '15/11/2020', 444555, 100154, 'requested');
+INSERT INTO patientorders (creation_date, patient_id, order_code, status) VALUES ('15/11/2020', 111222, 100116, 'accepted');
+INSERT INTO patientorders (creation_date, patient_id, order_code, status) VALUES ('15/11/2020', 222333, 100125, 'rejected');
+INSERT INTO patientorders (creation_date, patient_id, order_code, status) VALUES ('15/11/2020', 222333, 100131, 'reviewed');
+INSERT INTO patientorders (creation_date, patient_id, order_code, status) VALUES ('15/11/2020', 333444, 100133, 'performed');
+INSERT INTO patientorders (creation_date, patient_id, order_code, status) VALUES ('15/11/2020', 444555, 100154, 'requested');
