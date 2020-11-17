@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   Button,
   Modal,
@@ -10,9 +11,35 @@ import {
   Label,
   Input
 } from "reactstrap";
+import { Link } from "react-router-dom";
 
-const PatientInformationModal = (props) => {
-  const { className } = props;
+const ModalExample = (props) => {
+  const [patient, setPatient] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/patients/${props.patient_id}`).then((res) => {
+      setPatient(res.data);
+    });
+  }, []);
+
+  let mrn = null;
+  let firstName = null;
+  let lastName = null;
+  let dob = null;
+  let address = null;
+  patient.map((data) => (
+    mrn = data.mrn,
+    firstName = data.first_name,
+    lastName = data.last_name,
+    dob = data.dob,
+    address = data.address
+  ))
+
+  
+  const {
+    buttonLabel,
+    className
+  } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -20,9 +47,7 @@ const PatientInformationModal = (props) => {
 
   return (
     <div>
-      <Button color="info" onClick={toggle}>
-        More Information
-      </Button>
+      <Link onClick={toggle}>{props.patient_id}</Link>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Patient Information</ModalHeader>
         <ModalBody>
@@ -33,7 +58,7 @@ const PatientInformationModal = (props) => {
                 type="number"
                 name="mrn"
                 id="mrn"
-                placeholder={props.mrn}
+                placeholder={mrn}
                 disabled
               />
             </FormGroup>
@@ -43,7 +68,7 @@ const PatientInformationModal = (props) => {
                 type="text"
                 name="firstname"
                 id="firstName"
-                placeholder={props.firstName}
+                placeholder={firstName}
                 disabled
               />
             </FormGroup>
@@ -53,7 +78,7 @@ const PatientInformationModal = (props) => {
                 type="text"
                 name="lastname"
                 id="lastName"
-                placeholder={props.lastName}
+                placeholder={lastName}
                 disabled
               />
             </FormGroup>
@@ -63,7 +88,7 @@ const PatientInformationModal = (props) => {
                 type="text"
                 name="dob"
                 id="dob"
-                placeholder={props.dob}
+                placeholder={dob}
                 disabled
               />
             </FormGroup>
@@ -73,7 +98,7 @@ const PatientInformationModal = (props) => {
                 type="text"
                 name="address"
                 id="address"
-                placeholder={props.address}
+                placeholder={address}
                 disabled
               />
             </FormGroup>
@@ -87,6 +112,6 @@ const PatientInformationModal = (props) => {
       </Modal>
     </div>
   );
-};
+}
 
-export default PatientInformationModal;
+export default ModalExample;

@@ -1,11 +1,11 @@
 import React from "react";
-import PatientOrders from "../containers/PatientOrders";
+
+import SelectedPatientOrderModal from '../containers/SelectedPatientOrderModal';
 
 const PatientOrder = (props) => {
-
   const deletePatientOrderHandler = () => {
     props.deletePatientOrderHandler(props.patient_order_id);
-  }
+  };
 
   return (
     <div className="PatientOrder">
@@ -21,7 +21,7 @@ const PatientOrder = (props) => {
       <td style={{ width: "5%" }}>
         <strong>Patient ID: </strong>
         <br />
-        {props.patient_id}
+        <SelectedPatientOrderModal patient_id={props.patient_id} />
       </td>
       <td style={{ width: "5%" }}>
         <strong>Order Code: </strong>
