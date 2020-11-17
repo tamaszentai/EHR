@@ -1,5 +1,15 @@
-const { json } = require("body-parser");
 const pool = require("../db");
+
+
+const getAllPatientOrder = async (req, res, next) => {
+  try {
+    const results = await pool.query("SELECT * FROM patientorders ORDER BY status");
+    console.table(results.rows);
+    res.status(200).json(results.rows);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const createPatientOrder = async (req, res, next) => {
   try {
@@ -48,6 +58,7 @@ const deletePatientOrder = async (req, res, next) => {
   }
 };
 
+exports.getAllPatientOrder = getAllPatientOrder;
 exports.createPatientOrder = createPatientOrder;
 exports.updatePatientOrder = updatePatientOrder;
 exports.deletePatientOrder = deletePatientOrder;

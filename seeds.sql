@@ -66,7 +66,7 @@ INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100209, '
 INSERT INTO ordertypes (order_code, order_name, specimen_type) VALUES (100210, 'B,D-Dimer', 'blood');
 
 INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000000, '15/11/2020', 111222, 100116, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000001, '15/11/2020', 222333, 100125, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000002, '15/11/2020', 222333, 100131, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000003, '15/11/2020', 333444, 100133, 'accepted');
-INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000004, '15/11/2020', 444555, 100154, 'accepted');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000001, '15/11/2020', 222333, 100125, 'rejected');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000002, '15/11/2020', 222333, 100131, 'reviewed');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000003, '15/11/2020', 333444, 100133, 'performed');
+INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES (000004, '15/11/2020', 444555, 100154, 'requested');
