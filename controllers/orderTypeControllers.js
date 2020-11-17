@@ -10,6 +10,16 @@ const getAllOrderTypes = async (req, res, next) => {
   }
 };
 
+const getOrderTypeByOrderCode = async (req, res, next) => {
+  try {
+    const {ordercode}  = req.params
+    const results = await pool.query("SELECT * FROM ordertypes WHERE order_code = $1", [ordercode]);
+    console.table(results.rows);
+    res.status(200).json(results.rows);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const searchByOrderCode = async (req, res, next) => {
   try {
@@ -54,6 +64,7 @@ const deleteOrderTypeByOrderCode = async (req, res, next) => {
 }
 
 exports.getAllOrderTypes = getAllOrderTypes;
+exports.getOrderTypeByOrderCode = getOrderTypeByOrderCode;
 exports.searchByOrderCode = searchByOrderCode;
 exports.searchByOrderName = searchByOrderName;
 exports.searchBySpecimenType = searchBySpecimenType;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import SelectedPatientOrderModal from '../containers/SelectedPatientOrderModal';
+import SelectedOrderTypeModal from '../containers/SelectedOrderTypeModal';
 
 const PatientOrder = (props) => {
   const deletePatientOrderHandler = () => {
@@ -26,7 +27,7 @@ const PatientOrder = (props) => {
       <td style={{ width: "5%" }}>
         <strong>Order Code: </strong>
         <br />
-        {props.order_code}
+        <SelectedOrderTypeModal order_code={props.order_code} />
       </td>
       <td style={{ width: "10%" }}>
         <strong>Status: </strong>

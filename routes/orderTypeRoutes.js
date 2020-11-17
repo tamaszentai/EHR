@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get('/', orderTypeControllers.getAllOrderTypes);
 
+router.get('/:ordercode', orderTypeControllers.getOrderTypeByOrderCode);
+
 router.post('/ordercode', orderTypeControllers.searchByOrderCode);
 
 router.post('/ordername', orderTypeControllers.searchByOrderName);

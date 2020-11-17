@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const ModalExample = (props) => {
+const SelectedPatientOrderModal = (props) => {
   const [patient, setPatient] = useState([]);
 
   useEffect(() => {
@@ -114,4 +114,4 @@ const ModalExample = (props) => {
   );
 }
 
-export default ModalExample;
+export default SelectedPatientOrderModal;
