@@ -56,7 +56,6 @@ const updatePatientOrderHandler = () => {
           <option value="" disabled selected hidden>
             Please Choose...
           </option>
-          <option value="requested">Requested</option>
           <option value="performed">Performed</option>
           <option value="reviewed">Reviewed</option>
           <option value="accepted">Accepted</option>

@@ -23,7 +23,6 @@ const AddPatientOrderModal = (props) => {
 
   const toggle = () => setModal(!modal);
 
-
   useEffect(() => {
     axios.get("http://localhost:5000/api/ordertypes").then((res) => {
       setOrderTypes(res.data);
@@ -36,7 +35,6 @@ const AddPatientOrderModal = (props) => {
     });
   }, []);
 
-
   const patientIdChangeHandler = (e) => {
     setPatientId(e.target.value);
   };
@@ -45,27 +43,43 @@ const AddPatientOrderModal = (props) => {
     setOrderCode(e.target.value);
   };
 
-  const statusChangeHandler = (e) => {
-    setStatus(e.target.value);
-  };
 
   const submitFormHandler = (e) => {
     e.preventDefault();
 
-    const newPatient = {
+    const newPatientOrder = {
       // patientOrderId: patientOrderId,
       // creationDate: creationDate,
       patientId: patientId,
       orderCode: orderCode,
-      status: status,
     };
 
-    axios.post("http://localhost:5000/api/patientorders", newPatient).then((res) => {
-      console.log(res.data);
-    });
-    props.addNewPatient(newPatient);
+    // axios
+    //   .post("http://localhost:5000/api/patientorders", newPatient)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
+    // props.addNewPatient(newPatient);
     toggle();
+
+    console.log(newPatientOrder)
   };
+
+  let patientSelect;
+  if (patients !== []){
+    patientSelect = patients.map((data) => {
+    return <option value={data.mrn} onClick={patientIdChangeHandler}>{data.mrn}{" --- "}{data.first_name}{" "}{data.last_name}</option>
+    })
+  }
+
+  let orderTypeSelect;
+  if (orderTypes !== []){
+    orderTypeSelect = orderTypes.map((data) => {
+    return <option value={data.order_code} onClick={orderCodeChangeHandler}>{data.order_code}{" --- "}{data.order_name}</option>
+    })
+  }
+
+
 
   return (
     <div>
@@ -77,39 +91,31 @@ const AddPatientOrderModal = (props) => {
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="mrn">Medical Record Number</Label>
-              <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          </Input>
+              <Label for="mrn">Patient</Label>
+              <Input
+                type="select"
+                name="selectMulti"
+                id="exampleSelectMulti"
+                multiple
+              >
+                {patientSelect}
+              </Input>
             </FormGroup>
             <FormGroup>
-              <Label for="firstName">First Name</Label>
+              <Label for="firstName">Order Type</Label>
               <Input
-                type="text"
-                name="firstname"
-                id="firstName"
-                required
-                onChange={orderCodeChangeHandler}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="lastName">Last Name</Label>
-              <Input
-                type="text"
-                name="lastname"
-                id="lastName"
-                required
-                onChange={statusChangeHandler}
-              />
+                type="select"
+                name="selectMulti"
+                id="exampleSelectMulti"
+                multiple
+              >
+                {orderTypeSelect}
+              </Input>
             </FormGroup>
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button type="submit" color="success" >
+          <Button type="submit" color="success" onClick={submitFormHandler}>
             Add
           </Button>{" "}
           <Button color="danger" onClick={toggle}>
