@@ -14,12 +14,12 @@ const getAllPatientOrder = async (req, res, next) => {
 const createPatientOrder = async (req, res, next) => {
   try {
     const {
-      patientId,
-      orderCode
+      patient_id,
+      order_code
     } = req.body;
     const newPatientOrder = await pool.query(
       "INSERT INTO patientorders (patient_id, order_code) VALUES ($1, $2)",
-      [patientId, orderCode]
+      [patient_id, order_code]
     );
     res.status(200).json("New Patient order added!");
   } catch (err) {

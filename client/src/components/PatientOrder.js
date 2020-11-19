@@ -17,11 +17,12 @@ const PatientOrder = (props) => {
 
 const updatePatientOrderHandler = () => {
   const newStatus = {
+    patient_order_id: props.patient_order_id,
     status: status
   }
 
   axios.patch(`http://localhost:5000/api/patientorders/${props.patient_order_id}`, newStatus);
-  // props.updatePatientOrder(updatedPatientOrder);
+  props.updatePatientOrder(newStatus);
 
 }
 

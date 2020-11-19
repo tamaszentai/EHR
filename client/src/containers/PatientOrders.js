@@ -24,9 +24,13 @@ const PatientOrders = () => {
 
   const updatePatientOrder = (updatedPatientOrder) => {
     let newState = [...patientOrders]
-    newState = patientOrder.map(data => data.mrn === updatedPatientOrder.patient_order_id ? {...data, ...updatedPatientOrder} : data); 
+    newState = patientOrders.map(data => data.patient_order_id === updatedPatientOrder.patient_order_id ? {...data, ...updatedPatientOrder} : data); 
     setPatientOrders(newState);
    }
+
+   const addNewPatientOrder = (newPatientOrder) => {
+    setPatientOrders([...patientOrders, newPatientOrder])
+  };
 
   let patientOrder = null;
   if (patientOrders !== null) {
@@ -50,7 +54,7 @@ const PatientOrders = () => {
     <div className="PatientOrders">
       <h1>Patient Orders</h1>
       <br />
-      <AddPatientOrderModal />
+      <AddPatientOrderModal addNewPatientOrder={addNewPatientOrder}/>
       <br />
       <Table bordered>
       

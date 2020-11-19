@@ -47,32 +47,38 @@ const AddPatientOrderModal = (props) => {
     e.preventDefault();
 
     const newPatientOrder = {
-      patientId: patientId,
-      orderCode: orderCode,
+      patient_id: patientId,
+      order_code: orderCode,
     };
+
+
+    const newPatientOrderforState ={
+      patient_id: patientId,
+      order_code: orderCode,
+      status: 'requested',
+      creation_date: Date.now()
+    }
 
     axios
       .post("http://localhost:5000/api/patientorders", newPatientOrder)
       .then((res) => {
         console.log(res.data);
       });
-    
+    props.addNewPatientOrder(newPatientOrderforState)
     toggle();
-
-    console.log(newPatientOrder)
   };
 
   let patientSelect;
   if (patients !== []){
     patientSelect = patients.map((data) => {
-    return <option value={data.mrn} onClick={patientIdChangeHandler}>{data.mrn}{" --- "}{data.first_name}{" "}{data.last_name}</option>
+    return <option value={data.mrn} >{data.mrn}{" --- "}{data.first_name}{" "}{data.last_name}</option>
     })
   }
 
   let orderTypeSelect;
   if (orderTypes !== []){
     orderTypeSelect = orderTypes.map((data) => {
-    return <option value={data.order_code} onClick={orderCodeChangeHandler}>{data.order_code}{" --- "}{data.order_name}</option>
+    return <option value={data.order_code}>{data.order_code}{" --- "}{data.order_name}</option>
     })
   }
 
@@ -93,8 +99,12 @@ const AddPatientOrderModal = (props) => {
                 type="select"
                 name="selectMulti"
                 id="exampleSelectMulti"
-                multiple
+                required
+                onChange={patientIdChangeHandler}
               >
+                 <option value="" disabled selected hidden>
+            Please Choose...
+          </option>
                 {patientSelect}
               </Input>
             </FormGroup>
@@ -104,9 +114,14 @@ const AddPatientOrderModal = (props) => {
                 type="select"
                 name="selectMulti"
                 id="exampleSelectMulti"
-                multiple
+                onChange={orderCodeChangeHandler}
+                required aria-required="true"
               >
+                 <option value="" disabled selected hidden>
+            Please Choose...
+          </option>
                 {orderTypeSelect}
+                
               </Input>
             </FormGroup>
           </Form>
