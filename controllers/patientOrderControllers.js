@@ -4,7 +4,7 @@ const pool = require("../db");
 const getAllPatientOrder = async (req, res, next) => {
   try {
     const results = await pool.query("SELECT * FROM patientorders ORDER BY status");
-    // console.table(results.rows);
+    console.table(results.rows);
     res.status(200).json(results.rows);
   } catch (err) {
     console.log(err);
@@ -14,15 +14,12 @@ const getAllPatientOrder = async (req, res, next) => {
 const createPatientOrder = async (req, res, next) => {
   try {
     const {
-      patientOrderId,
-      creationDate,
       patientId,
-      orderCode,
-      status,
+      orderCode
     } = req.body;
     const newPatientOrder = await pool.query(
-      "INSERT INTO patientorders (patient_order_id, creation_date, patient_id, order_code, status) VALUES ($1, $2, $3, $4, $5)",
-      [patientOrderId, creationDate, patientId, orderCode, status]
+      "INSERT INTO patientorders (patient_id, order_code) VALUES ($1, $2)",
+      [patientId, orderCode]
     );
     res.status(200).json("New Patient order added!");
   } catch (err) {

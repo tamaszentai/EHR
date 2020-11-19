@@ -19,7 +19,6 @@ const AddPatientOrderModal = (props) => {
   const [orderTypes, setOrderTypes] = useState([]);
   const [patientId, setPatientId] = useState(null);
   const [orderCode, setOrderCode] = useState(null);
-  const [status, setStatus] = useState(null);
 
   const toggle = () => setModal(!modal);
 
@@ -48,18 +47,16 @@ const AddPatientOrderModal = (props) => {
     e.preventDefault();
 
     const newPatientOrder = {
-      // patientOrderId: patientOrderId,
-      // creationDate: creationDate,
       patientId: patientId,
       orderCode: orderCode,
     };
 
-    // axios
-    //   .post("http://localhost:5000/api/patientorders", newPatient)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
-    // props.addNewPatient(newPatient);
+    axios
+      .post("http://localhost:5000/api/patientorders", newPatientOrder)
+      .then((res) => {
+        console.log(res.data);
+      });
+    
     toggle();
 
     console.log(newPatientOrder)
